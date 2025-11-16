@@ -1,5 +1,6 @@
 // ===================================
 // 1. SANAT JA VIHJEET (YLI 100 PARIA)
+// ... (Sanat pysyvät ennallaan)
 // ===================================
 
 const sanat = [
@@ -111,17 +112,20 @@ const sanat = [
 // ===================================
 // 2. PELIN MUUTTUJAT
 // ===================================
-// ... (Muut muuttujat pysyvät ennallaan)
+
 let pelaajamaara = 0;
 let impostorMaara = 0;
 let roolit = [];           
 let valittuSana = '';
 let valittuVihje = '';
 let nykyinenPelaaja = 1;
+// UUSI MUUTTUJA
+let aloittavaPelaaja = 0; 
+
 
 // ===================================
 // 3. HTML-ELEMENTIT
-// ... (Nämä pysyvät ennallaan)
+// ... (HTML-elementit pysyvät ennallaan)
 // ===================================
 
 const setupKontti = document.getElementById('setup-kontti');
@@ -143,7 +147,6 @@ const aloitaUudelleenNappi = document.getElementById('aloita-uudelleen-nappi');
 
 // ===================================
 // 4. FUNKTIOT
-// ... (Funktiot pysyvät ennallaan, ne käsittelevät listaa oikein)
 // ===================================
 
 function setupGame() {
@@ -191,34 +194,16 @@ function setupGame() {
         data: rooli === "Impostori" ? valittuVihje : valittuSana
     }));
     
+    // Arvotaan aloittaja heti pelin alussa (1 ja pelaajamaara välillä)
+    aloittavaPelaaja = Math.floor(Math.random() * pelaajamaara) + 1;
+
     goToRevealPhase();
 }
 
-function goToRevealPhase() {
-    setupKontti.style.display = 'none';
-    resultsKontti.style.display = 'none';
-    peliKontti.style.display = 'block';
-    gameTimeKontti.style.display = 'none';
-    
-    nykyinenPelaaja = 1; 
-    showHandoffScreen();
-}
-
-function showHandoffScreen() {
-    rooliNäyttö.style.display = 'none';
-    seuraavaNappi.style.display = 'none';
-    document.body.style.backgroundColor = 'black'; 
-    rooliTeksti.innerHTML = ''; 
-
-    handoffKontti.style.display = 'flex';
-    handoffTeksti.textContent = `Anna puhelin Pelaajalle ${nykyinenPelaaja}`;
-    jatkaNappi.style.display = 'block';
-    
-    setTimeout(() => {
-        document.body.style.backgroundColor = '#1a1a2e';
-    }, 100); 
-}
-
+/**
+ * Näyttää pelaajan roolin ja sanan/vihjeen.
+ * MUUTETTU: Kansalainen näkee oman pelaajanumeronsa roolin sijaan.
+ */
 function showRoleScreen() {
     handoffKontti.style.display = 'none';
     jatkaNappi.style.display = 'none';
@@ -226,6 +211,7 @@ function showRoleScreen() {
     const pelaajanRooli = roolit[nykyinenPelaaja - 1];
 
     if (pelaajanRooli.rooli === 'Impostori') {
+        // Impostori näkee edelleen oman roolinsa
         rooliTeksti.innerHTML = `
             <div class="impostor">OLET IMPOSTORI!</div>
             <p>Salainen Vihje:</p>
@@ -233,8 +219,9 @@ function showRoleScreen() {
             <p>(Älä paljasta vihjettäsi!)</p>
         `;
     } else {
+        // Kansalainen näkee vain pelaajanumeronsa ja sanan
         rooliTeksti.innerHTML = `
-            <div class="crewmate">OLET KANSALAINEN</div>
+            <div class="crewmate">Pelaaja ${nykyinenPelaaja}</div>
             <p>Salainen Sana:</p>
             <div class="sana">${pelaajanRooli.data}</div>
         `;
@@ -257,12 +244,32 @@ function nextPlayer() {
     }
 }
 
+/**
+ * Siirtyy keskusteluvaiheeseen.
+ * MUUTETTU: Näyttää arvotun aloittavan pelaajan numeron.
+ */
 function goToGameTimePhase() {
     peliKontti.style.display = 'none';
+    
+    // Näytetään kuka aloittaa
+    gameTimeKontti.innerHTML = `
+        <h2>Kortit katsottu!</h2>
+        <p>Aloittakaa keskustelu ja yrittäkää paljastaa Impostorit.</p>
+        <hr>
+        <h3>Keskustelun aloittaa:</h3>
+        <div class="sana" style="font-size: 60px;">Pelaaja ${aloittavaPelaaja}</div>
+        <button id="paljasta-roolit-nappi" class="danger-button">Paljasta Roolit</button>
+    `;
+    
+    // Lisätään event listener uudelleen, koska innerHTML ylikirjoitti sen
+    document.getElementById('paljasta-roolit-nappi').addEventListener('click', showResults);
+    
     gameTimeKontti.style.display = 'block';
 }
 
+
 function showResults() {
+    // ... (Lopputulos funktio pysyy lähes ennallaan)
     gameTimeKontti.style.display = 'none';
     
     let resultsHTML = '<h2>Pelin Lopputulos</h2>';
@@ -287,35 +294,30 @@ function showResults() {
 }
 
 function resetGame() {
-    // Piilotetaan kaikki vaiheet
+    // ... (Resetointi pysyy ennallaan)
     peliKontti.style.display = 'none';
     gameTimeKontti.style.display = 'none';
     resultsKontti.style.display = 'none';
 
-    // Näytetään asetukset
     setupKontti.style.display = 'block';
 
-    // Nollataan pelimuuttujat
     pelaajamaara = 0;
     impostorMaara = 0;
     roolit = [];
     valittuSana = '';
     valittuVihje = '';
     nykyinenPelaaja = 1;
+    aloittavaPelaaja = 0; // Nollataan myös tämä
 }
 
 // ===================================
 // 5. TAPAHTUMANKÄSITTELIJÄT
+// ... (Tapahtumankäsittelijät pysyvät ennallaan)
 // ===================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Setup-vaihe
     aloitaPeliNappi.addEventListener('click', setupGame);
-    
-    // Reveal-vaihe
     jatkaNappi.addEventListener('click', showRoleScreen);
     seuraavaNappi.addEventListener('click', nextPlayer);
-
-    // Game Time -vaihe
-    paljastaRoolitNappi.addEventListener('click', showResults);
+    // Huom: paljastaRoolitNappi lisätään gameTimeKonttiin dynaamisesti
 });
