@@ -185,15 +185,24 @@ function setupGame() {
     valittuSana = valinta.sana;
     valittuVihje = valinta.vihje;
 
-    // 2. Roolien jako
-    let roolilista = Array(pelaajamaara).fill("Kansalainen");
+    // 2. Roolien jako (Korjattu: Käytetään Fisher-Yatesin sekoitusta)
+    let roolilista = [];
 
+    // Lisää Impostorit
     for (let i = 0; i < impostorMaara; i++) {
-        let index;
-        do {
-            index = Math.floor(Math.random() * pelaajamaara);
-        } while (roolilista[index] === "Impostori");
-        roolilista[index] = "Impostori";
+        roolilista.push("Impostori");
+    }
+
+    // Lisää Kansalaiset
+    const kansalaisMaara = pelaajamaara - impostorMaara;
+    for (let i = 0; i < kansalaisMaara; i++) {
+        roolilista.push("Kansalainen");
+    }
+
+    // Sekoita roolilista
+    for (let i = roolilista.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [roolilista[i], roolilista[j]] = [roolilista[j], roolilista[i]];
     }
 
     // 3. Lopullinen roolirakenne
@@ -223,12 +232,12 @@ function goToRevealPhase() {
 
 /**
  * Näyttää pelaajan vaihto-näytön turvallisesti.
- * KORJATTU: Varmistettu handoffKontti-elementin näyttäminen.
  */
 function showHandoffScreen() {
     rooliNäyttö.style.display = 'none';
     seuraavaNappi.style.display = 'none';
     document.body.style.backgroundColor = 'black'; 
+    handoffTeksti.textContent = ''; // Varmistetaan tekstin nollaus
     rooliTeksti.innerHTML = ''; 
 
     // Asetetaan display 'flex' varmistamaan näkyvyys ja sisällön keskitys
@@ -361,7 +370,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // REVEAL
     jatkaNappi.addEventListener('click', showRoleScreen);
     seuraavaNappi.addEventListener('click', nextPlayer);
-
-    // GAME TIME
-    // Paljastusnappi liitetään dynaamisesti goToGameTimePhase-funktiossa
 });
