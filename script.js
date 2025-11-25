@@ -1,31 +1,31 @@
 // ===================================
-// 1. SANAT JA VIHJEET (YLI 100 PARIA)
+// 1. SANAT JA VIHJEET (Päivitetty, sisältää vaikeampia vihjeitä)
 // ===================================
 
 const sanat = [
-    { sana: "Pizza", vihje: "Juusto" },
-    { sana: "Aurinko", vihje: "Valo" },
-    { sana: "Tietokone", vihje: "Näyttö" },
-    { sana: "Jääkaappi", vihje: "Kylmä" },
+    { sana: "Pizza", vihje: "Italialainen" }, // Vihje vaihdettu
+    { sana: "Aurinko", vihje: "Lämpö" }, 
+    { sana: "Tietokone", vihje: "Laskenta" }, 
+    { sana: "Jääkaappi", vihje: "Säilöntä" }, 
     { sana: "Banaani", vihje: "Keltainen" },
     { sana: "Sade", vihje: "Pilvet" },
-    { sana: "Metsä", vihje: "Puut" },
-    { sana: "Auto", vihje: "Rengas" },
-    { sana: "Kello", vihje: "Aika" },
-    { sana: "Kirja", vihje: "Sivut" },
-    { sana: "Puhelin", vihje: "Soitto" },
-    { sana: "Kahvi", vihje: "Muki" },
-    { sana: "Meri", vihje: "Vesi" },
+    { sana: "Metsä", vihje: "Hiljaisuus" }, 
+    { sana: "Auto", vihje: "Liikenne" }, // Vihje vaihdettu
+    { sana: "Kello", vihje: "Rytmi" }, 
+    { sana: "Kirja", vihje: "Tietous" }, // Vihje vaihdettu
+    { sana: "Puhelin", vihje: "Etäisyys" }, 
+    { sana: "Kahvi", vihje: "Energia" }, // Vihje vaihdettu
+    { sana: "Meri", vihje: "Syvyys" }, 
     { sana: "Lumi", vihje: "Talvi" },
-    { sana: "Talo", vihje: "Seinät" },
+    { sana: "Talo", vihje: "Turva" }, // Vihje vaihdettu
     { sana: "Omena", vihje: "Hedelmä" },
     { sana: "Tuoli", vihje: "Istuin" },
-    { sana: "Pöytä", vihje: "Taso" },
-    { sana: "Lasi", vihje: "Juoma" },
+    { sana: "Pöytä", vihje: "Kokoontuminen" }, // Vihje vaihdettu
+    { sana: "Lasi", vihje: "Läpinäkyvä" }, // Vihje vaihdettu
     { sana: "Sukat", vihje: "Jalka" },
     { sana: "Kynä", vihje: "Kirjoitus" },
     { sana: "Lamppu", vihje: "Valaisin" },
-    { sana: "Sänky", vihje: "Nukkuminen" },
+    { sana: "Sänky", vihje: "Leposija" }, 
     { sana: "Peili", vihje: "Kuva" },
     { sana: "Hattu", vihje: "Pää" },
     { sana: "Leipä", vihje: "Vilja" },
@@ -39,7 +39,7 @@ const sanat = [
     { sana: "Kauppa", vihje: "Ostos" },
     { sana: "Pankki", vihje: "Raha" },
     { sana: "Sairaala", vihje: "Hoito" },
-    { sana: "Koulu", vihje: "Oppiminen" },
+    { sana: "Koulu", vihje: "Tulevaisuus" }, 
     { sana: "Lentokone", vihje: "Taivas" },
     { sana: "Juna", vihje: "Raiteet" },
     { sana: "Bussi", vihje: "Julkinen" },
@@ -56,7 +56,7 @@ const sanat = [
     { sana: "Makeinen", vihje: "Sokeri" },
     { sana: "Viini", vihje: "Rypäle" },
     { sana: "Olut", vihje: "Humala" },
-    { sana: "Suklaa", vihje: "Kaakao" },
+    { sana: "Suklaa", vihje: "Palkinto" }, 
     { sana: "Tähti", vihje: "Yötaivas" },
     { sana: "Kuu", vihje: "Satelliitti" },
     { sana: "Planeetta", vihje: "Kiertorata" },
@@ -69,7 +69,7 @@ const sanat = [
     { sana: "Musiikki", vihje: "Ääni" },
     { sana: "Tanssi", vihje: "Liike" },
     { sana: "Teatteri", vihje: "Lava" },
-    { sana: "Runo", vihje: "Sanat" },
+    { sana: "Runo", vihje: "Tulkinta" }, 
     { sana: "Kartta", vihje: "Sijainti" },
     { sana: "Kompassi", vihje: "Suunta" },
     { sana: "Kamera", vihje: "Valokuva" },
@@ -105,7 +105,16 @@ const sanat = [
     { sana: "Malli", vihje: "Poseeraus" },
     { sana: "Tanssija", vihje: "Esitys" },
     { sana: "Runoilija", vihje: "Rytmi" },
-    { sana: "Kuningatar", vihje: "Valtaistuin" }
+    { sana: "Kuningatar", vihje: "Valtaistuin" },
+    // UUDET, VAIKEAT KÄSITTEET
+    { sana: "Viidakko", vihje: "Kosteus" },
+    { sana: "Avaruus", vihje: "Painottomuus" },
+    { sana: "Ajatus", vihje: "Salaisuus" },
+    { sana: "Vapaus", vihje: "Vastuu" },
+    { sana: "Laki", vihje: "Yhteiskunta" },
+    { sana: "Historia", vihje: "Mennyt" },
+    { sana: "Tieto", vihje: "Valta" },
+    { sana: "Sielu", vihje: "Olemus" }
 ];
 
 // ===================================
@@ -185,7 +194,7 @@ function setupGame() {
     valittuSana = valinta.sana;
     valittuVihje = valinta.vihje;
 
-    // 2. Roolien jako (Korjattu: Käytetään Fisher-Yatesin sekoitusta)
+    // 2. Roolien jako (Fisher-Yatesin sekoituksella)
     let roolilista = [];
 
     // Lisää Impostorit
@@ -237,7 +246,7 @@ function showHandoffScreen() {
     rooliNäyttö.style.display = 'none';
     seuraavaNappi.style.display = 'none';
     document.body.style.backgroundColor = 'black'; 
-    handoffTeksti.textContent = ''; // Varmistetaan tekstin nollaus
+    handoffTeksti.textContent = ''; 
     rooliTeksti.innerHTML = ''; 
 
     // Asetetaan display 'flex' varmistamaan näkyvyys ja sisällön keskitys
@@ -261,7 +270,7 @@ function showRoleScreen() {
     const pelaajanRooli = roolit[nykyinenPelaaja - 1];
 
     if (pelaajanRooli.rooli === 'Impostori') {
-        // Impostori näkee edelleen oman roolinsa
+        // Impostori näkee oman roolinsa
         rooliTeksti.innerHTML = `
             <div class="impostor">OLET IMPOSTORI!</div>
             <p>Salainen Vihje:</p>
